@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import "./HbButton/HbButton.css";
+import "./MenuButton/MenuButton.css";
 
 export default function HamburgerButton ({
     size = "50px",
