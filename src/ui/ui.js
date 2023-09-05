@@ -1,4 +1,0 @@
-// UI components
-export default {
-    
-}

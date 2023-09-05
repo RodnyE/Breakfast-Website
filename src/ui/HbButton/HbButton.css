@@ -1,0 +1,40 @@
+
+.hamburger-button {
+    width: 60px;
+    height: 60px;
+    padding: 5px;
+    box-sizing: content-box;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.line {
+    background-color: #000;
+    width: 62.5%;
+    height: 6.25%;
+    transform: none;
+    transition: all 0.2s ease;
+}
+
+.line:first-child {margin-bottom: 15.625%}
+.active .line:first-child {
+    transform: rotate(45deg);
+    transform-origin: top left;
+}
+
+
+.active .line:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-50%);
+}
+
+
+.line:last-child {margin-top: 15.625%}
+.active .line:last-child {
+    transform: translateX(-1px) rotate(-45deg);
+    transform-origin: top left;
+}
