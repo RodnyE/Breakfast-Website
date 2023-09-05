@@ -32,7 +32,7 @@ const getPost = async (req, res) => {
     return res.json({status: true, data: p});
 };
 
-const getPost = async (req, res) => {
+const post = async (req, res) => {
     if (!req.body) return res.json({ status: false, data: { message: "NO_DATA" } });
     let text, name;
     try {
