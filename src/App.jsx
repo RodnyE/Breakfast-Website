@@ -1,7 +1,11 @@
 
+import HomeView from "./views/Home"
+
 // Application 
 export default function App () {
     return (
-      <div> Food Blog </div>
+      <div>
+        <HomeView show={true}/>
+      </div>
     )
 }
