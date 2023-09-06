@@ -2,10 +2,11 @@
 const config = require("../config.js");
 const express = require("express");
 const app = express();
+const router = require("./router/router.js");
 
 // Global middlewares
 app.use(express.json());
-
+app.use(router);
 
 // Start the server and listen on the specified port
 app.listen(config.PORT, () => {
