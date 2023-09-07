@@ -1,18 +1,35 @@
 
-.collapse-content { 
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height .5s ease-in-out;
+.collapse-ui {
+    --duration: .5s;
 }
 
-.collapse-content.open {
-  overflow: auto;
-  max-height: 1000px;
+.collapse-ui .collapse-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--duration) ease-in-out;
 }
 
-.collapse-content li {
-  margin: .8rem;
+.collapse-ui .collapse-title {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    margin-bottom: .8rem;
+    cursor: pointer;
+    color: var(--header-color);
 }
-.collapse-content h4 {
-  font-size: 1rem;
+
+.collapse-ui .collapse-row {
+    margin-right: .3rem;
+    transform: rotate(0);
+    transition: all var(--duration);
+}
+
+
+.collapse-ui.show .collapse-content {
+    overflow: auto;
+    max-height: 1000px;
+}
+
+.collapse-ui.show .collapse-row {
+    transform: rotate(90deg);
 }

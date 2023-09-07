@@ -1,23 +1,32 @@
 import {useState, useEffect} from "react";
 import "./Collapse/Collapse.css";
 
-export default function Collapse ( {
+export default function Collapse ({
     title,
     children,
-    open = false,
+    show = false,
+    onShow = ()=>{},
+    onHide = ()=>{},
 }) {
-    const [isOpen, setIsOpen] = useState(false);
-
+    const [isShow, setIsShow] = useState(show);
+    
+    useEffect(() => {setIsShow(show)}, [show]);
+    useEffect(() => {
+        if (isShow) onShow();
+        else onHide();
+    }, [isShow]);
+    
     const toggleCollapse = () => {
-        setIsOpen(!isOpen);
+        setIsShow(!isShow);
     };
 
     return (
-        <div className="p-3">
-            <div onClick={toggleCollapse}>
-                <h3 className="cursor-pointer mb-2"> {isOpen ? "ↆ": "➔"} {title} </h3>
+        <div className={`collapse-ui p-3 ${isShow ? "show": ""}`}>
+            <div className="collapse-title" onClick={toggleCollapse}>
+                <div className="collapse-row"> {">"} </div>
+                {title}
             </div>
-            <div className={`collapse-content ${isOpen ? "open": ""}`}>
+            <div className="collapse-content">
                 {children}
             </div>
         </div>
