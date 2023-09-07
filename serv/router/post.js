@@ -19,7 +19,7 @@ const getPost = async (req, res) => {
     }
 
     const posts = await Post.findAll({
-        order: ['createdAt', 'DESC'] 
+        order: [['createdAt', 'DESC']]
     });
 
     let p = [];
