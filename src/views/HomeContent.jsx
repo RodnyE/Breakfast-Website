@@ -1,14 +1,28 @@
+
+import { useState } from "react"
 import Collapse from "ui/Collapse"
 
 export default function HomeViewContent() {
+    
+    const [currectCollapse, setCurrentCollapse] = useState(0); 
+    
+    
     return (
         <div>
-            <Collapse title="Propósito del Proyecto">
+            <Collapse 
+                title="Propósito del Proyecto"
+                show={currectCollapse === 1}
+                onShow={() => setCurrentCollapse(1)}
+            >
                 El propósito fundamental de "SaborVital" es fomentar el bienestar y la salud a través de dos pilares esenciales: la alimentación y los hábitos. Queremos empoderarte con el conocimiento y las herramientas necesarias para tomar decisiones conscientes en tus desayunos y, al mismo tiempo, crear hábitos que perduren en el tiempo.
                 Bienvenido a "SaborVital ", donde los sabores saludables y los hábitos brillantes se unen para crear un camino hacia tu mejor versión. ¡Prepárate para un viaje emocionante hacia el bienestar!
             </Collapse>
 
-            <Collapse title="Beneficios de Desayunos Saludables">
+            <Collapse 
+                title="Beneficios de Desayunos Saludables"
+                show={currectCollapse === 2}
+                onShow={() => setCurrentCollapse(2)}
+            >
                 Los desayunos saludables son esenciales para el bienestar. Ofrecen una serie de ventajas significativas:
 
                 <ol>
@@ -25,7 +39,11 @@ export default function HomeViewContent() {
                 </ol>
             </Collapse>
 
-            <Collapse title="Consejos para un Desayuno Saludable">
+            <Collapse 
+                title="Consejos para un Desayuno Saludable"
+                show={currectCollapse === 3}
+                onShow={() => setCurrentCollapse(3)}
+            >
                 Para un desayuno saludable y delicioso, ten en cuenta estos consejos:
 
                 <ol>
@@ -43,7 +61,11 @@ export default function HomeViewContent() {
                 Recuerda que un desayuno saludable es una inversión en tu bienestar. Adaptar estas pautas a tus preferencias personales te permitirá disfrutar de comidas matutinas deliciosas y nutritivas.
             </Collapse>
 
-            <Collapse title="Cómo Mantener un Hábito Saludable">
+            <Collapse 
+                title="Cómo Mantener un Hábito Saludable"
+                show={currectCollapse === 4}
+                onShow={() => setCurrentCollapse(4)}
+            >
                 Mantener un hábito saludable puede ser un desafío, pero con determinación y estrategias adecuadas, es totalmente posible. Aquí hay algunos pasos que puedes seguir para ayudar a mantener tus hábitos saludables:
 
                 <ol>
@@ -63,7 +85,11 @@ export default function HomeViewContent() {
 
             </Collapse>
 
-            <Collapse title="DESAFÍO : PLAN SEMANAL">
+            <Collapse 
+                title="DESAFÍO : PLAN SEMANAL"
+                show={currectCollapse === 5}
+                onShow={() => setCurrentCollapse(5)}
+            >
 
                 <ul>
                     <li><a href="https://drive.google.com/file/d/1sMBp1Oa-R22bCgygEnOjAWy2x7wOIoWP/view?usp=drivesdk">Día 1</a></li>
