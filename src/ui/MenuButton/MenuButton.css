@@ -13,7 +13,7 @@
 }
 
 .line {
-    background-color: #000;
+    background-color: var(--icon-color);
     width: 62.5%;
     height: 6.25%;
     transform: none;

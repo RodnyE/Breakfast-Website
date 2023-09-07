@@ -4,6 +4,7 @@ import "./MenuButton/MenuButton.css";
 
 export default function HamburgerButton ({
     size = "50px",
+    iconColor = "black",
     onClick = ()=>{},
 }) {
     const [isActive, setIsActive] = useState(false);
@@ -16,7 +17,11 @@ export default function HamburgerButton ({
     return (
         <div
             className={`hamburger-button ${isActive ? "active" : ""}`}
-            style={size && {width: size, height: size}}
+            style={{
+                width: size, 
+                height: size,
+                "--icon-color": iconColor,
+            }}
             onClick={handleButtonClick}
         >
             <span className="line"></span>
