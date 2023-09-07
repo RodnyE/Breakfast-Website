@@ -1,0 +1,20 @@
+
+.cursor-pointer {cursor: pointer}
+
+
+.slide-left-animation {
+    --duration: 2s;
+    animation: slide-left-animation var(--duration) ease-in-out;
+}
+
+@keyframes slide-left-animation {
+    from {
+        opacity: 0;
+        transform: translateX(-1rem);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
