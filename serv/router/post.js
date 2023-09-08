@@ -34,11 +34,12 @@ const getPost = async (req, res) => {
 
 const post = async (req, res) => {
     if (!req.body) return res.json({ status: false, data: { message: "NO_DATA" } });
-    let text, name;
+    let text, name , fp;
     try {
         const body = req.body;
         text = body.text;
         name = body.name;
+        fp = body.fp || "noid";
     } catch (err) {
         return res.json({
             status: false,
@@ -51,7 +52,7 @@ const post = async (req, res) => {
     const ip = req.socket.remoteAddress;
     let user = await User.findOne({
         where: {
-            user_ip: ip
+            user_ip: fp
         }
     });
 
@@ -61,7 +62,7 @@ const post = async (req, res) => {
 
     user = await User.findOne({
         where: {
-            user_ip: ip
+            user_ip: fp
         }
     });
 

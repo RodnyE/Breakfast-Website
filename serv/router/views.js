@@ -1,5 +1,5 @@
 const config = require("../../config.js");
-const {User} = require(config.SERV + "/helpers/db.js");
+const { User } = require(config.SERV + "/helpers/db.js");
 const uid = require(config.SERV + "/helpers/uid.js");
 
 const views = async (req, res) => {
@@ -23,16 +23,20 @@ const views = async (req, res) => {
         }
     });
     if (!already) {
-        const user = await User.create({
-            user_ip: fp,
-            name: "user_" + uid.num(4)
-        });
+        try {
+            const user = await User.create({
+                user_ip: fp,
+                name: "user_" + uid.num(4)
+            });
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     const v = (await User.findAll()).length + 2979;
 
-    return res.json({views: v})
-    
+    return res.json({ views: v })
+
 };
 
 module.exports = views;
