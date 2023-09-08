@@ -23,7 +23,7 @@ export default function Pagination ({
         <ul className={`pagination ${disabled ? "disabled" : ""}`}>
             <li 
                 className={"page-item page-link" + (position === 0 ? " disabled" : "")}
-                onClick={() => setPosition(position - 1)}
+                onClick={() => setPosition(position)}
             > Atrás </li>
            
             {(()=>{

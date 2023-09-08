@@ -7,7 +7,7 @@
         <div   
             disabled={disabled}
             onClick={onClick} 
-            className={"btn btn-primary"}
+            className={`btn btn-primary ${disabled && "disabled"}`}
         >
             {children}
         </div>
