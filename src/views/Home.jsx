@@ -34,7 +34,10 @@ export default function HomeView ({show}) {
         setGettingPostList(true);
         http.post({
             url: "/getpost", 
-            body: {sel: index + 1}
+            body: {
+                sel: index + 1,
+                fp: bfp,
+            }
         })
         .then(({status, data, error}) => {
             setGettingPostList(false);
@@ -136,6 +139,7 @@ export default function HomeView ({show}) {
                         body: {
                             name: nameField,
                             text: postField,
+                            fp: bfp,
                         }
                     })
                     .then(() => {
