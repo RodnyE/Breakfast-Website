@@ -1,0 +1,10 @@
+
+.home-view-content h4 {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--header-color);
+}
+
+.home-view-content li {
+    padding: .3rem 0;
+}

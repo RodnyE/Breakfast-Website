@@ -1,5 +1,7 @@
 
 import { useState } from "react"
+import "./Home.css"
+
 import Collapse from "ui/Collapse"
 
 export default function HomeViewContent() {
@@ -8,7 +10,7 @@ export default function HomeViewContent() {
     
     
     return (
-        <div>
+        <div className="home-view-content">
             <Collapse 
                 title="Propósito del Proyecto"
                 show={currectCollapse === 1}

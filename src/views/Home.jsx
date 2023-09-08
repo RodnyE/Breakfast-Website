@@ -6,32 +6,52 @@ import Card from "ui/Card"
 import TextField from "ui/TextField"
 import Pagination from "ui/Pagination"
 import Button from "ui/Button"
+import Spinner from "ui/Spinner"
 
 import http from "utils/http"
+
 import HomeViewContent from "./HomeContent"
 import heroImg from "../assets/hero-1.jpg"
 
+
+
 export default function HomeView ({show}) {
     
+    const bfp = document.bfp;
     const [nameField, setNameField] = useState("");
     const [postField, setPostField] = useState("");
     const [visits, setVisits] = useState(0);
+    
     const [gettingPostList, setGettingPostList] = useState(false);
+    const [sendingPost, setSendingPost] = useState(false);
+    const [postListIndex, setPostListIndex] = useState(0);
     const [postList, setPostList] = useState([]);
     
-
-    useEffect(()=>{
-        http.get("/views").then(({views}) => {
-            setVisits(views)
+    
+    
+    // Fetch to Post List
+    const requestPostList = (index) => {
+        setGettingPostList(true);
+        http.post({
+            url: "/getpost", 
+            body: {sel: index + 1}
         })
-    }, [])
-
-    const blurBg = {
-        background: "rgba(0,0,0,0.2)",
-        backdropFilter: "blur(.1rem)",
-        padding: ".5rem",
-        borderRadius: "1rem"
+        .then(({status, data, error}) => {
+            setGettingPostList(false);
+            if (status) setPostList(data);
+        })
+       .catch(() => setGettingPostList(false))
     }
+    
+    useEffect(() => {
+        
+        http.post({url: "/views", body:{
+            fp: document.bfp,
+        }})
+        .then(({views}) => {
+            setVisits(views);
+        });
+    }, []);
     
     return (
         <View show={show} className="align-items-strenth">
@@ -42,12 +62,19 @@ export default function HomeView ({show}) {
                     background: "url(" + heroImg + ")",
                 }}
             >
-                <h1 style={blurBg} className="fade-animation text-light fw-bold"> Sabor Vital </h1>
+                <h1 style={{
+                        background: "rgba(0,0,0,0.2)",
+                        backdropFilter: "blur(.1rem)",
+                        padding: ".5rem",
+                        borderRadius: "1rem",
+                    }}
+                    className="slide-left-animation text-light fw-bold"
+                > Sabor Vital </h1>
             </nav>
             
             <p className="text-gray"> 👁‍🗨{visits} </p>
 
-            <p style={{borderLeft: "solid currentColor 4px"}} className="m-2 p-2">
+            <p className="slide-left-animation" style={{borderLeft: "solid currentColor 4px"}} className="m-2 p-2">
                 Bienvenidos a nuestro emocionante proyecto "SaborVital: Desayunos que cuidan, Hábitos que Elevan"..
             </p>
             
@@ -74,22 +101,10 @@ export default function HomeView ({show}) {
                 </div>
                 
                 <Pagination
-                    value={0}
+                    value={postListIndex}
                     length={5}
                     disabled={gettingPostList}
-                    onChange={(index) => {
-                        setGettingPostList(true);
-                        http.post({
-                            url: "/getpost", 
-                            body: {sel: index + 1}
-                        })
-                        .then(({status, data, error}) => {
-                            setGettingPostList(false);
-                            if (status) setPostList(data);
-                        })
-                        .catch(() => setGettingPostList(false))
-                        
-                    }}
+                    onChange={(index) => requestPostList(index)}
                 />
             </Card>
             
@@ -102,17 +117,20 @@ export default function HomeView ({show}) {
                 <TextField 
                     placeholder="Tu Nombre..."
                     value={nameField}
+                    disabled={sendingPost}
                     onChange={e => setNameField(e.target.value)}
                 />
                 <textarea 
                     rows="7" 
                     className="form-control"
+                    disabled={sendingPost}
                     placeholder="Me ha ido bien en mi rutina..."
                     value={postField}
                     onChange={e => setPostField(e.target.value)}
                 />
 
-                <Button onClick={()=>{
+                <Button disabled={sendingPost} onClick={()=>{
+                    setSendingPost(true)
                     http.post({
                         url: "/post",
                         body: {
@@ -120,8 +138,17 @@ export default function HomeView ({show}) {
                             text: postField,
                         }
                     })
+                    .then(() => {
+                        setTimeout(()=>{
+                            setSendingPost(false);
+                            requestPostList(1);
+                            setPostIndex(1)
+                        }, 10000);
+                    })
                 }}
-                > Publicar</Button>
+                > 
+                     {sendingPost && <Spinner/>} Publicar 
+               </Button>
             </Card>
             
         </View>
