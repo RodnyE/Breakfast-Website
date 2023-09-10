@@ -36,6 +36,7 @@ module.exports = {
     module: {
         rules: [
             {
+    
                 test: /\.(js|jsx)$/i,
                 loader: 'babel-loader',
             },
@@ -44,7 +45,7 @@ module.exports = {
                 use: ['style-loader', 'css-loader', 'postcss-loader'],
             },
             {
-                test: /\.otf$/i,
+                test: /\.(jpg|png)$/i,
                 type: 'asset',
             },
         ],
