@@ -2,7 +2,7 @@
 
 Este proyecto es un blog de comida simple que proporciona información sobre desayunos saludables y consejos útiles para llevar una vida sana. 
 Fue creado como parte de una exposición sobre alimentación saludable durante el desayuno para un proyecto escolar.
-- [Vista previa🚀](http://food-blog.eu-4.evennode.com)
+- [Vista previa🚀](http://food-blog.eu-4.evennode.com/)
 
 
 ## Características 👍
